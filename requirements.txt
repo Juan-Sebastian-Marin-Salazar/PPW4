@@ -1,0 +1,14 @@
+Flask
+FLask-Login
+FLask-MySQLdb
+FLask-WTF
+Jinja2
+MarkupSafe
+WTForms
+Werkzeug
+blinker
+click
+colorama
+itsdangerous
+mysqlclient
+pip
