@@ -1,0 +1,64 @@
+{% extends './base.html' %}
+{% block titulo %}Nosotros{% endblock %}
+{% block cuerpo %}
+    <!--Aqui iria un video y mucho texto-->
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">
+				<img src="../img/logo_empresa.png">
+				<span class="d-none d-lg-block"style="color: rgb(255, 255, 255);">UMAMI</span>
+			</a>
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+				<div class="navbar-nav ms-auto">
+					<a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
+					<a class="nav-link" href="menu.html">MENU</a>
+					<a class="nav-link" href="tienda.html">PARA LLEVAR</a>
+					<a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
+					<a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
+					<a class="nav-link" href="contacto.html">CONTACTO</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="titulomenu"><h1>Conocenos</h1></div>
+	<div class="gridviewPar">
+		<div class="floatright">
+			<h2 class="categoria">Nuestros Inicios</h2>
+			<div class="griditemm">
+				<img src="../img/street-food-restaurant-small-restaurant.jpg" alt="restaurante viejo">
+			</div>
+		</div>
+		<p class="text_container">
+			Provenientes de una familia japonesa, Umami es la continuacion del profesion que la familia Fujikawa a desempeñado por casi
+			de un siglo.
+		</p>
+	</div>
+	<div class="gridviewNon">
+		<p class="text_container" style="padding: 10% 0;">
+			El señor Fujikawa es el actual dueño y chef principal del establecimineto. Hijo de padres inmigrantes, esta listo para
+			compartir el sazon de toda una cultura con el mundo. 
+		</p>
+		<div class="floatright">
+			<h2 class="categoria">Conoce al chef</h2>
+			<div class="griditemm">
+				<img src="../img/Chef_Shota.jpg" alt="supremo lider">
+			</div>
+		</div>
+	</div>
+	<div class="gridviewPar">
+		<div class="floatright">
+			<h2 class="categoria">Todo el mundo puede cocinar</h2>
+			<div class="griditemm">
+				<img src="../img/100225-F-2866R-015.avif" alt="quien ese esta señora?">
+			</div>
+		</div>
+		<p class="text_container" style="padding: 10% 0;">
+			La comida nos une a todos, siempre estamos dispuestos a trabajar con quienes esten dispuestas o diespuestos a compartir su 
+			pasion con nosotros
+		</p>
+	</div>
+    {% endblock %}

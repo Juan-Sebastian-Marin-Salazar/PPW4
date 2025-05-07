@@ -1,0 +1,385 @@
+{% extends './base.html' %}
+{% block titulo %}Menu{% endblock %}
+{% block cuerpo %}
+<!--Esta es la barra de navegacion superior-->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+            <img src="../img/logo_empresa.png">
+            <span class="d-none d-lg-block"style="color: rgb(255, 255, 255);">UMAMI</span>
+        </a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
+                <a class="nav-link" href="menu.html">MENU</a>
+                <a class="nav-link" href="tienda.html">PARA LLEVAR</a>
+                <a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
+                <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="contacto.html">CONTACTO</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Esta es la barra de navegacion superior-->
+
+<!--Aqui Grid de como mostrar el menu-->
+<div class="titulomenu"><h1>Menu de comida</h1></div>
+
+<div class="categoria"><h2>Sushi y Sashimi</h2></div>
+<!--Primera categoria-->
+<div class="galeria">
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 1.jpg" alt="Ride on Time imagen">
+        <h3>Ride on Time</h3>
+        <p>
+            Un roll vibrante con atún fresco, mango dulce y una salsa especial de la casa que realza los sabores tropicales. Perfecto para quienes buscan una explosión de sabor en cada bocado.
+        </p>
+        <p>$220.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 2.png" alt="Silent Screamer imagen">
+        <h3>Silent Screamer</h3>
+        <p>
+            Nigiri de anguila glaseada con salsa teriyaki casera y un toque de wasabi, una combinación intensa y llena de carácter.
+        </p>    
+        <p>$190.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 3.png" alt="Your Eyes imagen">
+        <h3>Your Eyes</h3>
+        <p>
+            Delicado sashimi surtido con cortes seleccionados de atún, salmón y hamachi, servidos sobre hielo para una experiencia fresca y auténtica.
+        </p>
+        <p>$250.00</p>    
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 4.jpg" alt="Plastic Love imagen">
+        <h3>Plastic Love</h3>
+        <p>
+            Un sofisticado roll de salmón ahumado, queso crema y aguacate, envuelto en alga nori y acompañado de una reducción de soya y miel.
+        </p>
+        <p>$200.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 5.jpg" alt="Dream in the Screen imagen">
+        <h3>Dream in the Screen (DS)</h3>
+        <p>
+            Roll crujiente relleno de tempura de camarón, pepino y un toque de mayonesa picante, ideal para quienes buscan una mezcla perfecta de textura y sabor.
+        </p>
+        <p>$180.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 6.jpg" alt="Tokai imagen">
+        <h3>Tokai</h3>
+        <p>
+            Roll de atún picante con pepino y cebollín, cubierto con un ligero toque de salsa sriracha. Un platillo inspirado en la intensidad y energía de la ciudad.
+        </p>
+        <p>$210.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 1 img 7.jpeg" alt="Machi no Dorufin imagen">
+        <h3>Machi no Dorufin (MD)</h3>
+        <p>
+            Un roll refrescante con pulpo, pepino y cebolla morada, acompañado de salsa ponzu y ajonjolí tostado.
+        </p>
+        <p>$230.00</p>
+    </div>
+</div>
+
+<!--Segunda categoria-->
+<div class="categoria"><h2>Platos Fuertes</h2></div>
+<div class="galeria">
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 1.jpg" alt="Daydream imagen">
+    <h3>Daydream</h3>
+    <p>Ramen tonkotsu con un caldo cremoso cocinado por horas, 
+        acompañado de chashu de cerdo, huevo marinado y cebollín fresco. 
+        Un sueño hecho realidad en cada sorbo.</p>
+        <p>$240.00</p>
+    </div>
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 2.png" alt="Rainy Day imagen">
+    <h3>Rainy Day</h3>
+    <p>Ramen shoyu con caldo de soya, hongos shiitake, bambú y 
+        fideos artesanales, perfecto para reconfortar el alma en un día lluvioso.</p>
+        <p>$220.00</p>  
+    </div>
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 3.png" alt="Magic Ways imagen">
+    <h3>Magic Ways</h3>
+    <p>Udon en un caldo miso con tofu sedoso, alga wakame y 
+        un toque de jengibre. Suave, envolvente y lleno de umami.</p>
+        <p>$210.00</p>
+    </div>
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 4.jpg" alt="I Love You imagen">
+    <h3>I Love You (ILY)</h3>
+    <p>Yakisoba salteado al wok con vegetales frescos, carne de res y una mezcla 
+        especial de salsas dulces y saladas. Un platillo que se siente como un abrazo.</p>
+        <p>$230.00</p>
+    </div>
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 5.jpg" alt="Morning Glory imagen">
+    <h3>Morning Glory</h3>
+    <p>Omurice: arroz salteado con salsa de tomate envuelto en una tortilla esponjosa, 
+        servido con un toque de salsa demi-glace. Un clásico desayuno japonés.</p>
+        <p>$190.00</p>
+    </div>
+    <div class="item">
+    <img src="../img/Img_Menu/Category 2 img 6.png" alt="Hatsu Koi imagen">
+    <h3>Hatsu Koi</h3>
+    <p>Gyudon: un tazón de arroz cubierto con finas láminas de res cocidas a fuego 
+        lento en una salsa de soya y mirin. Suave y nostálgico, como un primer amor.</p>
+        <p>$220.00</p>
+    </div>
+    <div class="item">
+        <img src="../img/Img_Menu/Category 2 img 7.jpg" alt="Step Into The Light imagen">
+        <h3>Step Into The Light (SIL)</h3>
+        <p>Yakitori: brochetas de pollo a la parrilla, marinadas en una salsa 
+            dulce y salada, servidas con un toque de cebollín fresco.</p>
+        <p>$170.00</p>
+    </div>
+</div>
+
+<div class="categoria"><h2>Donburis y Especialidades</h2></div>
+<!--Tercera categoria-->
+<div class="galeria">
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 1.jpg" alt="Beleza Pula imagen">
+<h3>Beleza Pula</h3>
+<p>Katsudon: chuleta de cerdo empanizada y bañada en una mezcla de huevo y 
+    salsa dashi, servida sobre arroz caliente. Un platillo energético y lleno de sabor.</p>
+    <p>$230.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 2.jpg" alt="Sparkle imagen">
+<h3>Sparkle</h3>
+<p>Chirashi don: una selección de sashimi fresco servido sobre un lecho de arroz de sushi, 
+    decorado con huevas de salmón y alga nori. Una experiencia brillante en cada bocado.</p>
+    <p>$260.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 3.jpg" alt="Someday imagen">
+<h3>Someday</h3>
+<p>Filete de salmón glaseado con teriyaki, acompañado de arroz y ensalada de pepino japonés. 
+    Un platillo reconfortante que deja huella.</p>
+    <p>$280.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 4.jpg" alt="Bay City imagen">
+<h3>Bay City</h3>
+<p>Tonkatsu: crujiente chuleta de cerdo empanizada, 
+    servida con salsa especial de la casa, repollo rallado y arroz japonés.</p>
+    <p>$210.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 5.jpg" alt="Breezin imagen">
+<h3>Breezin</h3>
+<p>Takoyaki: esferas de masa crujiente rellenas de pulpo, cubiertas con salsatonkatsu, 
+    mayonesa japonesa y copos de bonito seco. Una explosión de sabor.</p>
+    <p>$180.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 3 img 6.png" alt="Summer Connection imagen">
+<h3>Summer Connection</h3>
+<p>Poke bowl con salmón marinado, aguacate, edamames y arroz sushi, 
+    aliñado con un toque de salsa de sésamo. Ligero y refrescante, 
+    perfecto para los días cálidos.</p>
+    <p>$250.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 3 img 7.png" alt="Carnaval imagen">
+    <h3>Carnaval</h3>
+    <p>Tempura de camarón y verduras, rebozado en una masa ligera y crujiente, 
+        servido con salsa tentsuyu casera.</p>
+        <p>$200.00</p>
+    </div>
+</div>
+
+<div class="categoria"><h2>Postres</h2></div>
+<!--Cuarta categoria-->
+<div class="galeria">
+<div class="item">
+<img src="../img/Img_Menu/Category 4 img 1.jpg" alt="Candy Heartsimagen">
+<h3>Candy Hearts</h3>
+<p>Dorayaki: esponjosos panqueques japoneses rellenos de crema de fresay frijol dulce. 
+    Un postre nostálgico y reconfortante.</p>
+    <p>$120.00</p>
+</div>
+<div class="item">
+<img src="../img/Img_Menu/Category 4 img 2.jpg" alt="Lovers Paradise imagen">
+<h3>Lovers Paradise</h3>
+<p>Mochi de helado con sabores variados: matcha, fresa y sésamo negro. 
+    Suave, dulce y refrescante.</p>
+    <p>$140.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 4 img 3.jpg" alt="Shyness Boy imagen">
+    <h3>Shyness Boy</h3>
+    <p>Cheesecake japonés, ligero y esponjoso, con un toque de miel y frutos rojos.</p>
+    <p>$130.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 4 img 4.jpg" alt="Summer Blue imagen">
+    <h3>Summer Blue</h3>
+    <p>Taiyaki crujiente relleno de crema de matcha y chocolate blanco.</p>
+    <p>$110.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 4 img 5.jpg" alt="Midnight Pretenders imagen">
+    <h3>Midnight Pretenders</h3>
+    <p>Helado de sésamo negro, con una textura cremosa y un sabor profundo y elegante.</p>
+    <p>$140.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 4 img 6.jpg" alt="Please Let Me Wonder imagen">
+    <h3>Please Let Me Wonder (PleWo)</h3>
+    <p>Helado de vainilla con miel y almendras caramelizadas, servido con un toque de canela.</p>
+    <p>$130.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 4 img 7.jpeg" alt="Long Kiss Good Bye imagen">
+    <h3>Long Kiss Good Bye (LoKissGoB)</h3>
+    <p>Parfait de frutas con capas de crema batida, granola crujiente y un toque de jarabe de yuzu.</p>
+    <p>$150.00</p>
+</div>
+</div>
+
+<div class="categoria"><h2>Bebidas</h2></div>
+<!--Quinta categoria-->
+<div class="galeria">
+    <div class="item">
+    <img src="../img/Img_Menu/Category 5 img 1.jpg" alt="Windy Summer imagen">
+    <h3>Windy Summer</h3>
+    <p>Té matcha frío con leche y un toque de miel, refrescante y cremoso.</p>
+    <p>$90.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 2.jpg" alt="September imagen">
+    <h3>September</h3>
+    <p>Coctel de umeshu con soda y limón, un licor de ciruela japonés con un toque efervescente.</p>
+    <p>$120.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 3.jpg" alt="Midnight Cruisin imagen">
+    <h3>Midnight Cruisin</h3>
+    <p>Café japonés con un toque de licor de amaretto, perfecto para noches largas.</p>
+    <p>$130.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 4.png" alt="Hot Stuff imagen">
+    <h3>Hot Stuff</h3>
+    <p>Ginger ale con limón y un toque de jarabe de chile, burbujeante y con un ligero picante.</p>
+    <p>$100.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 5.jpg" alt="Miss You, Miss Me imagen">
+    <h3>Miss You, Miss Me</h3>
+    <p>Batido de plátano y miel, cremoso y reconfortante.</p>
+    <p>$90.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 6.jpg" alt="Springin Night imagen">
+    <h3>Springin Night</h3>
+    <p>Frappe de matcha con leche condensada, ideal para una noche tranquila.</p>
+    <p>$110.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 7.jpg" alt="I Can't Stop the Loneliness imagen">
+    <h3>I Can't Stop the Loneliness (Loneliness)</h3>
+    <p>Coctel de sake con jugo de durazno, delicado y afrutado.</p>
+    <p>$140.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 5 img 8.png" alt="Remember Summer Days imagen">
+    <h3>Remember Summer Days</h3>
+    <p>Té de jazmín helado con un toque de miel, evocando el verano.</p>
+    <p>$80.00</p>
+</div>
+</div>
+
+<div class="categoria"><h2>Entradas y Extras</h2></div>
+<!--Sexta categoria-->
+<div class="galeria">
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 1.jpg" alt="Dress Down imagen">
+    <h3>Dress Down</h3>
+    <p>Ensalada de algas con tofu y ajonjolí, ligera y sofisticada.</p>
+    <p>$120.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 2.png" alt="Wash imagen">
+    <h3>Wash</h3>
+    <p>Sopa de miso tradicional con alga wakame, tofu y cebollín, un clásico reconfortante.</p>
+    <p>$80.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 3.jpg" alt="Loveland Island imagen">
+    <h3>Loveland Island</h3>
+    <p>Edamames al vapor con sal de mar, el snack perfecto para acompañar cualquier platillo.</p>
+    <p>$90.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 4.jpg" alt="Love Space imagen">
+    <h3>Love Space</h3>
+    <p>Gyoza de cerdo doradas a la plancha, rellenas de carne jugosa con un toque de ajo y jengibre.</p>
+    <p>$140.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 5.png" alt="Summer Goddess imagen">
+    <h3>Summer Goddess</h3>
+    <p>Ramune de melón, una gaseosa japonesa chispeante y refrescante.</p>
+    <p>$70.00</p>
+</div>
+<div class="item">
+    <img src="../img/Img_Menu/Category 6 img 6.jpg" alt="I'm in Love imagen">
+    <h3>I'm in Love (inlove)</h3>
+    <p>Onigiri relleno de salmón o umeboshi (ciruela encurtida), envuelto en alga nori.</p>
+    <p>$100.00</p>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<!--Pie de pagina-->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-section">
+            <h4>Umami</h4>
+            <p>Sabores auténticos en cada bocado. Ven y disfruta de la mejor experiencia gastronómica.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Calle 123, Ciudad, País</p>
+            <p><i class="fas fa-phone"></i> +123 456 7890</p>
+            <p><i class="fas fa-envelope"></i> info@umami.com</p>
+        </div>
+        <div class="footer-section">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Facebook</i></a>
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">X</i></a>
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Instagram</i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Equipo: No compila</h4>
+            <div class="social-icons">
+                <p><i class="fas fa-map-marker-alt"></i> Zavalza Covarrubias Edgar Enrique</p>
+                <p><i class="fas fa-map-marker-alt"></i> Telles Castro Jose Ricardo</p>
+                <p><i class="fas fa-map-marker-alt"></i> Marin Salazar Juan Sebastian</p>
+                <p><i class="fas fa-map-marker-alt"></i> Estrada Bustos Miguel Angel</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Umami. Todos los derechos reservados.</p>
+    </div>
+</footer>
+{% endblock %}

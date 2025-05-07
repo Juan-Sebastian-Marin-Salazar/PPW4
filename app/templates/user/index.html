@@ -1,0 +1,166 @@
+{% extends './base.html' %}
+{% block titulo %}Inicio{% endblock %}
+{% block cuerpo %}
+<nav class="navbar navbar-expand-lg navindex">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+            <img src="/static/img/logo_empresa.png">
+            <span class="d-none d-lg-block" style="font-size: 4em; color: rgb(255, 255, 255);">UMAMI</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
+                <a class="nav-link" href="menu.html">MENU</a>
+                <a class="nav-link" href="tienda.html">PARA LLEVAR</a>
+                <a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
+                <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="contacto.html">CONTACTO</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Contenedor carrusel y video-->
+<div class="video-carrusel-container">
+    <!-- Video de fondo -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline class="back-video" style="filter: blur(3px);">
+            <source src="img/video/bghero.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <!-- Carrusel -->
+    <div class="carrusel">
+        <div class="container d-flex justify-content-center">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" style="max-width: 1000px;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="../img/Carrusel-1.jpg" class="d-block img-fluid" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Instalaciones ambientadas</h3>
+                            <p>Un pedazo de Japón en cada rincón, con una decoración que te transporta al corazón de Tokio.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="../img/Carrusel-2.jpg" class="d-block img-fluid" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Sushi tradicional japones</h3>
+                            <p>Experiencia única con ingredientes frescos y técnicas tradicionales de preparación.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <img src="../img/Carrusel-3.jpg" class="d-block img-fluid" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Ramen autentico</h3>
+                            <p>Saborea el verdadero ramen japonés con caldos cocidos a fuego lento y fideos artesanales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Especialidad-->
+<div class="especialidad">
+    <img src="../img/img-index-1.jpg">
+    <div>
+        <h1>Chashu Ramen</h1>
+        <p>Sopa tradicional con tallarines, cerdo (100g), medio huevo, cebollín, huevo, wakame y naruto en caldo sabor soya</p>
+        <button type="button" class="btn btn-outline-custom">VER MÁS</button>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center my-4">NUESTRO MENÚ</h2>
+    <div class="gallery-container">
+        <div class="gallery-card">
+            <img src="../img/img-index-1.jpg" alt="Imagen 1">
+            <div class="gallery-overlay">
+                <h4>Ramen</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <img src="../img/img-index-2.jpg" alt="Imagen 2">
+            <div class="gallery-overlay">
+                <h4>Sushi</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <img src="../img/Img_Menu/Category 3 img 1.jpg" alt="Imagen 3">
+            <div class="gallery-overlay">
+                <h4>Donburis</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <img src="../img/Img_Menu/Category 4 img 1.jpg" alt="Imagen 4">
+            <div class="gallery-overlay">
+                <h4>Postres</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<!--Pie de pagina-->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-section">
+            <h4>Umami</h4>
+            <p>Sabores auténticos en cada bocado. Ven y disfruta de la mejor experiencia gastronómica.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Calle 123, Ciudad, País</p>
+            <p><i class="fas fa-phone"></i> +123 456 7890</p>
+            <p><i class="fas fa-envelope"></i> info@umami.com</p>
+        </div>
+        <div class="footer-section">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Facebook</i></a>
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">X</i></a>
+                <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Instagram</i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Equipo: No compila</h4>
+            <div class="social-icons">
+                <p><i class="fas fa-map-marker-alt"></i> Zavalza Covarrubias Edgar Enrique</p>
+                <p><i class="fas fa-map-marker-alt"></i> Telles Castro Jose Ricardo</p>
+                <p><i class="fas fa-map-marker-alt"></i> Marin Salazar Juan Sebastian</p>
+                <p><i class="fas fa-map-marker-alt"></i> Estrada Bustos Miguel Angel</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Umami. Todos los derechos reservados.</p>
+    </div>
+</footer>
+{% endblock %}

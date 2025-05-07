@@ -1,0 +1,135 @@
+{% extends './base.html' %}
+{% block titulo %}Inicio{% endblock %}
+{% block cuerpo %}
+    <!--Aqui hacer un formulario-->
+
+    <!--Esta es la barra de navegacion superior-->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="../img/logo_empresa.png">
+                <span class="d-none d-lg-block" style="color: rgb(255, 255, 255);">UMAMI</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
+                    <a class="nav-link" href="menu.html">MENU</a>
+                    <a class="nav-link" href="tienda.html">PARA LLEVAR</a>
+                    <a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
+                    <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
+                    <a class="nav-link" href="contacto.html">CONTACTO</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--Esta es la barra de navegacion superior-->
+    <header class="html-contacto">
+        <h1>Trabaja con Nosotros</h1>
+        <p>Completa el formulario y únete a nuestro equipo</p>
+    </header>
+
+    <section class="formulario-empleo">
+        <h2>Solicita empleo</h2>
+        <form id="formulario">
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre">
+                <p id="error-nombre" class="errores">El nombre es invalido.</p>
+            </div>
+            <div class="mb-3">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                <p id="error-apellidos" class="errores">Los apellidos son invalidos.</p>
+            </div>
+
+            <div class="mb-3">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono">
+                <p id="error-telefono" class="errores">El teléfono es invalido.</p>
+            </div>
+            <div class="mb-3">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" class="form-control" id="correo" name="correo">
+                <p id="error-correo" class="errores">El correo es invalido.</p>
+            </div>
+            <div class="mb-3">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+                <p id="error-fechaNacimiento" class="errores">La fecha de nacimiento es invalido.</p>
+            </div>
+
+            <div class="mb-3">
+                <label for="puesto">Puesto solicitado</label>
+                <select class="form-select" id="puesto" name="puesto">
+                    <option value="cocinero">Cocinero</option>
+                    <option value="mesero">Mesero</option>
+                    <option value="limpieza">Personal de limpieza</option>
+                    <option value="gerente">Gerente</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label for="cv">Adjuntar CV (PDF, Máx. 2MB):</label>
+                <input type="file" id="cv" name="cv" accept=".pdf">
+                <span id="error-cv" class="error oculto">Debe ser PDF y no superar 2MB.</span>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+        </form>
+        <div id="mensaje" class="text-danger mt-3"></div>
+    </section>
+
+
+    <section class="info-contacto">
+        <h2>Información de contacto</h2>
+        <p><strong>Teléfono:</strong> +123 456 7890</p>
+        <p><strong>Correo:</strong> info@umami.com</p>
+        <p><strong>Dirección:</strong> Calle 123, Ciudad, País</p>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!--Pie de pagina-->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h4>Umami</h4>
+                <p>Sabores auténticos en cada bocado. Ven y disfruta de la mejor experiencia gastronómica.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Calle 123, Ciudad, País</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> info@umami.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Facebook</i></a>
+                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">X</i></a>
+                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Instagram</i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Equipo: No compila</h4>
+                <div class="social-icons">
+                    <p><i class="fas fa-map-marker-alt"></i> Zavalza Covarrubias Edgar Enrique</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Telles Castro Jose Ricardo</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Marin Salazar Juan Sebastian</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Estrada Bustos Miguel Angel</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Umami. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="/static/js/script.js" defer></script>
+{% endblock %}
