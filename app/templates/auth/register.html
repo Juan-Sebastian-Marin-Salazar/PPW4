@@ -25,13 +25,12 @@
                 <div class="card-body p-md-5 mx-md-4">
   
                   <div class="text-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                      style="width: 185px;" alt="logo">
-                    <h4 class="mt-1 mb-5 pb-1">Nosotros somos Umami</h4>
+                    <img src="{{ url_for('static', filename='img/logo_empresa.png') }}" class="logo_login">
+                    <h4 class="mt-1 mb-5 pb-1">Bienvenido a la familia Umami</h4>
                   </div>
   
                   <form action="/register" method="POST">
-                    <p>Por favor inicia sesión</p>
+                    <p>Llena estos campos para formar parte de la familia</p>
 
                     <div data-mdb-input-init class="form-outline mb-4">
                       <input type="text" id="form2Example11" class="form-control"
@@ -57,7 +56,11 @@
   
                 </div>
               </div>
-              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2" id="fondo_login">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">Gracias por elegirnos!</h4>
+                  <p class="small mb-0">Te prometemos que no te defraudaremos con nuestro increible sazon.</p>
+                </div>
               </div>
             </div>
           </div>

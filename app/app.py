@@ -89,6 +89,34 @@ def register():
 def index():
     return (render_template("user/index.html"))
 
+@app.route("/perfil" , methods=['GET', 'POST'])
+@login_required
+def perfil():
+    if request.method == 'POST':
+        try:
+            # Validar campos obligatorios
+            if not all([request.form.get('email'), request.form.get('fullname'), request.form.get('password')]):
+                flash("Todos los campos son obligatorios")
+                return redirect(url_for('perfil'))
+            
+            # Actualizar usuario
+            current_user.email = request.form['email']
+            current_user.fullname = request.form['fullname']
+            current_user.password = request.form['password']
+            
+            # Guardar cambios en la base de datos
+            ModelUsers.update(db, current_user)
+            
+            flash("Perfil actualizado exitosamente")
+            return redirect('logout')
+            
+        except Exception as e:
+            flash(f"Error al actualizar el perfil: {str(e)}")
+    
+    
+    return (render_template("user/perfil.html"))
+
+
 @app.route("/admin")
 @login_required
 @admin_required

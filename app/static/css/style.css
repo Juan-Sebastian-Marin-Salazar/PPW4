@@ -978,4 +978,10 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-}	
+}
+
+.logo_login{
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}

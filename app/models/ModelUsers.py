@@ -58,3 +58,20 @@ class ModelUsers():
             db.connection.rollback()
             print(f"Error en registro: {str(ex)}")  # Para debug
             return False
+    
+    
+    @classmethod
+    def update(cls, db, user):
+        try:
+            cursor = db.connection.cursor()
+        
+            cursor.execute(
+                "call sp_UpdateUser(%s,%s,%s,%s);", (user.id ,user.email, user.password, user.fullname)
+            )
+            db.connection.commit()
+            print(f"Actualizado: {user.email}, {user.password}, {user.fullname}")
+            return True
+        except Exception as ex:
+            db.connection.rollback()
+            print(f"Error en actualizacion: {str(ex)}")  # Para debug
+            return False
