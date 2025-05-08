@@ -970,3 +970,12 @@ button:hover {
     font-size: 12px;
     display: none;
 }
+
+
+#fondo_login {
+    background-color: #d7462d;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}	

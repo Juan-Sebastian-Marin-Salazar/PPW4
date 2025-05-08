@@ -1,5 +1,9 @@
-class developmentConfig():
+class DevelopmentConfig:
     DEBUG = True
-    SECRET_KEY = "kpJ9eQ6|Ql9R+L)z`O6h"
+    SECRET_KEY = "qhrf$edjYTJ)*21nsThdK"
+    MYSQL_HOST = "localhost"
+    MYSQL_USER = "root"
+    MYSQL_PASSWORD = ""
+    MYSQL_DB = "umami"
 
-config = {"development": developmentConfig}
+config = {"development": DevelopmentConfig}
