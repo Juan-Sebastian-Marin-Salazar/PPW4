@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 from config import config
 
 app = Flask(__name__)
-
+#hola
 @app.route("/")
 def index():
     return render_template("user/index.html")
