@@ -31,40 +31,10 @@
 </nav>
 <!--Esta es la barra de navegacion superior-->
 
-<!--Aqui Grid de como mostrar el menu-->
-<div class="titulomenu">
-    <h1>Menu de comida</h1>
-</div>
-
-{% if current_user.usertype == 2 %}
-    <div style="text-align: center;">
-        <a class="btn btn-primary" href="{{ url_for('crear_platillo') }}">+</a>
-    </div>
-{% endif %}
-
-{% for category, items in dishes|groupby("category") %}
-    <div class="categoria">
-        <h2>{{ category }}</h2>
-    </div>
-    <div class="galeria">
-        {% for dish in items %}
-            <div class="item" >
-                <img src="{{ url_for('static', filename=dish.image) }}" alt="{{ dish.name }}">
-                <h3>{{ dish.name }}</h3>
-                <p>{{ dish.desc }}</p>
-                <p><strong>Precio:</strong> ${{ dish.price }}</p>
-                {% if current_user.usertype == 2 %}
-                    <form method="POST" action="{{ url_for('delete_dish', id=dish.id) }}">
-                        <a class="btn btn-secondary" href="{{ url_for('edit_dish', id=dish.id) }}">Editar</a>
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar {{ dish.name }}?')">Eliminar</button>
-                    </form>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
-{% endfor %}
-
-
+<form method="POST" action="{{ url_for('delete_dish', id=dish.id) }}">
+    <button type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+</form>
+<a href="{{ url_for('edit_dish', id=dish.id) }}">Editar</a>
 
 <!--Pie de pagina-->
 <footer class="footer">
