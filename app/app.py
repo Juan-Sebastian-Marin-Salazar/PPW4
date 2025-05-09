@@ -57,7 +57,7 @@ def register():
 
             if existe:
                 flash("El correo ya está registrado")
-                return redirect(url_for('register'))
+                return redirect(url_for('login'))
                 
             # Crear nuevo usuario
             new_user = User(
@@ -98,7 +98,7 @@ def perfil():
             if not all([request.form.get('email'), request.form.get('fullname'), request.form.get('password')]):
                 flash("Todos los campos son obligatorios")
                 return redirect(url_for('perfil'))
-            
+            print(f"{current_user.id},{current_user.email}, {current_user.fullname}, {current_user.password}, {current_user.usertype}")
             # Actualizar usuario
             current_user.email = request.form['email']
             current_user.fullname = request.form['fullname']
