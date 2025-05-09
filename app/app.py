@@ -136,6 +136,7 @@ def logout():
 
 #dishes
 @app.route('/menu')
+@login_required
 def menu():
     cursor = db.connection.cursor()
     cursor.execute('''
@@ -197,7 +198,7 @@ def edit_dish(id):
     cursor = db.connection.cursor()
     cursor.execute("SELECT id, name FROM categories")
     categories = cursor.fetchall()
-
+    
     cursor.execute("SELECT * FROM dishes WHERE id = %s", (id,))
     dish = cursor.fetchone()
 
@@ -235,23 +236,6 @@ def delete_dish(id):
         db.connection.commit()
         cursor.close()
         return redirect(url_for('menu'))
-
-
-#categorias
-@app.route('/admin/crear_categoria', methods=['GET', 'POST'])
-@login_required
-@admin_required
-def crear_categoria():
-    if request.method == 'POST':
-        name = request.form['name']
-        cursor = db.connection.cursor()
-        cursor.execute("INSERT INTO categories (name) VALUES (%s)", (name,))
-        db.connection.commit()
-        cursor.close()
-        flash('Categoría creada con éxito')
-        return redirect(url_for('menu'))  # O a donde prefieras
-
-    return render_template('admin/create_category.html')
 
 
 
