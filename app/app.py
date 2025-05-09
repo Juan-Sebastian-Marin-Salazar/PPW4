@@ -54,7 +54,6 @@ def register():
                 return redirect(url_for('register'))
             
             existe = ModelUsers.get_by_email(db, request.form.get('email'))
-
             if existe:
                 flash("El correo ya está registrado")
                 return redirect(url_for('login'))
@@ -88,6 +87,11 @@ def register():
 @login_required
 def index():
     return (render_template("user/index.html"))
+
+@app.route("/menu")
+@login_required
+def menu():
+    return (render_template("user/menu.html"))
 
 @app.route("/perfil" , methods=['GET', 'POST'])
 @login_required

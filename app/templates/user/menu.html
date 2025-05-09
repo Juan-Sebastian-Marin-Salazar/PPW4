@@ -7,14 +7,14 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="index.html">
-            <img src="../img/logo_empresa.png">
+        <a class="navbar-brand" href="{{ url_for('index')}}">
+            <img src="{{ url_for('static', filename='img/logo_empresa.png') }}">
             <span class="d-none d-lg-block"style="color: rgb(255, 255, 255);">UMAMI</span>
         </a>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                 <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
-                <a class="nav-link" href="menu.html">MENU</a>
+                <a class="nav-link" href="{{ url_for('menu')}}">MENU</a>
                 <a class="nav-link" href="tienda.html">PARA LLEVAR</a>
                 <a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
                 <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
@@ -22,6 +22,10 @@
             </div>
         </div>
     </div>
+    <a class="navbar-brand" href="{{ url_for('perfil') }}" style= "padding: 5px; margin-right: 10px;">
+        <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle" style="width: 60px; height: 60px;">
+        <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
+    </a>
 </nav>
 <!--Esta es la barra de navegacion superior-->
 

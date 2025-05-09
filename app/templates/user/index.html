@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                 <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
-                <a class="nav-link" href="menu.html">MENU</a>
+                <a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
                 <a class="nav-link" href="tienda.html">PARA LLEVAR</a>
                 <a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
                 <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-    <a class="navbar-brand" href="{{ url_for('perfil') }}" style="background-color: rgb(255, 147, 128); border-radius: 5%; padding: 5px; margin-right: 10px;">
-        <img src="{{ url_for('static', filename='img/perfil.png') }}" class="rounded-circle" style="width: 70px; height: 70px;">
+    <a class="navbar-brand" href="{{ url_for('perfil') }}" style= "padding: 5px; margin-right: 10px;">
+        <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle" style="width: 60px; height: 60px;">
         <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
     </a>
 </nav>
@@ -31,7 +31,7 @@
     <!-- Video de fondo -->
     <div class="video-background">
         <video autoplay loop muted playsinline class="back-video" style="filter: blur(3px);">
-            <source src="img/video/bghero.mp4" type="video/mp4">
+            <source src="{{ url_for('static', filename='video/bghero.mp4') }}" type="video/mp4">
         </video>
     </div>
     
@@ -86,7 +86,7 @@
 
 <!--Especialidad-->
 <div class="especialidad">
-    <img src="../img/img-index-1.jpg">
+    <img src="{{ url_for('static', filename='img/img-index-1.jpg') }}">
     <div>
         <h1>Chashu Ramen</h1>
         <p>Sopa tradicional con tallarines, cerdo (100g), medio huevo, cebollín, huevo, wakame y naruto en caldo sabor soya</p>
@@ -95,31 +95,31 @@
 </div>
 
 <div class="container">
-    <h2 class="text-center my-4">NUESTRO MENÚ</h2>
+    <h2 class="text-center my-4" id="NuestroMenu">NUESTRO MENÚ</h2>
     <div class="gallery-container">
         <div class="gallery-card">
-            <img src="../img/img-index-1.jpg" alt="Imagen 1">
+            <img src="{{ url_for('static', filename='img/img-index-1.jpg') }}" alt="Imagen 1">
             <div class="gallery-overlay">
                 <h4>Ramen</h4>
             </div>
         </div>
         
         <div class="gallery-card">
-            <img src="../img/img-index-2.jpg" alt="Imagen 2">
+            <img src="{{ url_for('static', filename='img/img-index-2.jpg') }}" alt="Imagen 2">
             <div class="gallery-overlay">
                 <h4>Sushi</h4>
             </div>
         </div>
         
         <div class="gallery-card">
-            <img src="../img/Img_Menu/Category 3 img 1.jpg" alt="Imagen 3">
+            <img src="{{ url_for('static', filename='img/img-index-3.jpg') }}" alt="Imagen 3">
             <div class="gallery-overlay">
                 <h4>Donburis</h4>
             </div>
         </div>
         
         <div class="gallery-card">
-            <img src="../img/Img_Menu/Category 4 img 1.jpg" alt="Imagen 4">
+            <img src="{{ url_for('static', filename='img/Img_Menu/Category 4 img 1.jpg') }}" alt="Imagen 4">
             <div class="gallery-overlay">
                 <h4>Postres</h4>
             </div>
