@@ -11,34 +11,23 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dishes table
-CREATE TABLE IF NOT EXISTS dishes (
-    dish_id INT AUTO_INCREMENT PRIMARY KEY,
+
+-- Tabla de categorías simplificada
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+-- Tabla de platillos simplificada
+CREATE TABLE dishes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Shopping cart table
-CREATE TABLE IF NOT EXISTS cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id SMALLINT UNSIGNED NOT NULL,
-    delivery_person_id SMALLINT UNSIGNED,
-    date DATETIME,
-    status ENUM('Delivered', 'Paid') DEFAULT 'Paid',
-    FOREIGN KEY (customer_id) REFERENCES users(id),
-    FOREIGN KEY (delivery_person_id) REFERENCES users(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Cart details table
-CREATE TABLE IF NOT EXISTS cart_details (
-    detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    cart_id INT NOT NULL,
-    dish_id INT NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
-    FOREIGN KEY (dish_id) REFERENCES dishes(dish_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    desc VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    image VARCHAR(255),
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
 
 
 

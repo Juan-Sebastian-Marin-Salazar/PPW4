@@ -88,10 +88,6 @@ def register():
 def index():
     return (render_template("user/index.html"))
 
-@app.route("/menu")
-@login_required
-def menu():
-    return (render_template("user/menu.html"))
 
 @app.route("/perfil" , methods=['GET', 'POST'])
 @login_required
@@ -120,6 +116,11 @@ def perfil():
     
     return (render_template("user/perfil.html"))
 
+
+@app.route("/menu")
+@login_required
+def menu():
+    return (render_template("user/menu.html"))
 
 @app.route("/admin")
 @login_required
