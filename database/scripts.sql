@@ -1,18 +1,50 @@
 CREATE DATABASE IF NOT EXISTS umami;
 USE umami;
 
--- Tabla de usuarios
+-- Users table
 CREATE TABLE IF NOT EXISTS users (
- id smallint unsigned NOT NULL AUTO_INCREMENT,
- email varchar(30) NOT NULL,
- password char(102) NOT NULL,
- fullname varchar(50),
- usertype tinyint NOT NULL,
- PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, 
+    fullname VARCHAR(100),
+    usertype TINYINT NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dishes table
+CREATE TABLE IF NOT EXISTS dishes (
+    dish_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Shopping cart table
+CREATE TABLE IF NOT EXISTS cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id SMALLINT UNSIGNED NOT NULL,
+    delivery_person_id SMALLINT UNSIGNED,
+    date DATETIME,
+    status ENUM('Delivered', 'Paid') DEFAULT 'Paid',
+    FOREIGN KEY (customer_id) REFERENCES users(id),
+    FOREIGN KEY (delivery_person_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Cart details table
+CREATE TABLE IF NOT EXISTS cart_details (
+    detail_id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT NOT NULL,
+    dish_id INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
+    FOREIGN KEY (dish_id) REFERENCES dishes(dish_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 
+
+
+-- Procedimientos
 DELIMITER //
 CREATE PROCEDURE sp_AddUser(IN pEmail VARCHAR(30), IN pPassword VARCHAR(102), IN pFullName
 VARCHAR(50), in pUserType tinyint)
@@ -65,44 +97,3 @@ BEGIN
 END IF;
 END //
 DELIMITER ;
-
-
-
-
--- Tabla de platillos
-CREATE TABLE platillos (
-    id_platillo INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50),
-    descripcion TEXT,
-    precio DECIMAL(10,2)
-);
-
-
-
-
-
-
-
-
-
-
-CREATE TABLE carrito (
-    id_carrito INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    id_repartidor INT,
-    fecha DATETIME,
-    estatus ENUM('Entregado', 'Pagado'),
-    FOREIGN KEY (id_cliente) REFERENCES usuarios(id_usuario),
-    FOREIGN KEY (id_repartidor) REFERENCES usuarios(id_usuario)
-);
-
-
-CREATE TABLE DetalleCarrito (
-    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_carrito INT NOT NULL,
-    id_platillo INT NOT NULL,
-    cantidad INT,
-    FOREIGN KEY (id_carrito) REFERENCES carrito(id_carrito),
-    FOREIGN KEY (id_platillo) REFERENCES platillos(id_platillo)
-);
-
