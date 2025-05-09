@@ -32,8 +32,20 @@
 <!--Esta es la barra de navegacion superior-->
 
 <!--Aqui Grid de como mostrar el menu-->
-
-
+<h1>Menú de Platillos</h1>
+<div class="galeria">
+    {% for dish in dishes %}
+        <div class="item">
+            <h2>{{ dish.name }}</h2>
+            <p><strong>Categoría:</strong> {{ dish.category }}</p>
+            <p>{{ dish.desc }}</p>
+            <p><strong>Precio:</strong> ${{ dish.price }}</p>
+            {% if dish.image %}
+                <img src="{{ dish.image }}" alt="{{ dish.name }}" width="200">
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
 <!--Pie de pagina-->
 <footer class="footer">
     <div class="container">

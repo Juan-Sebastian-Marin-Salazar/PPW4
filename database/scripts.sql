@@ -22,7 +22,7 @@ CREATE TABLE categories (
 CREATE TABLE dishes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    desc VARCHAR(255) NOT NULL,
+    descr VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     image VARCHAR(255),
     category_id INT,

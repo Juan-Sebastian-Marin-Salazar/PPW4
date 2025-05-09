@@ -117,10 +117,30 @@ def perfil():
     return (render_template("user/perfil.html"))
 
 
-@app.route("/menu")
-@login_required
+@app.route('/menu')
 def menu():
-    return (render_template("user/menu.html"))
+    cursor = db.connection.cursor()
+    cursor.execute('''
+        SELECT d.id, d.name, d.descr, d.price, d.image, c.name AS category 
+        FROM dishes d
+        JOIN categories c ON d.category_id = c.id
+    ''')
+    dishes = cursor.fetchall()
+    cursor.close()
+
+    # Transformar a lista de diccionarios si lo necesitas
+    dish_list = []
+    for dish in dishes:
+        dish_list.append({
+            'id': dish[0],
+            'name': dish[1],
+            'desc': dish[2],
+            'price': dish[3],
+            'image': dish[4],
+            'category': dish[5]
+        })
+
+    return render_template('user/menu.html', dishes=dish_list)
 
 @app.route("/admin")
 @login_required
