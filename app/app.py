@@ -126,17 +126,16 @@ def edit_perfil(id):
             if not all([request.form.get('email'), request.form.get('fullname'), request.form.get('password')]):
                 flash("Todos los campos son obligatorios")
                 return redirect(url_for('perfil'))
-            print(f"{current_user.id},{current_user.email}, {current_user.fullname}, {current_user.password}, {current_user.usertype}")
             # Actualizar usuario
             current_user.email = request.form['email']
             current_user.fullname = request.form['fullname']
             current_user.password = request.form['password']
             
+            print(f"{current_user.id},{current_user.email}, {current_user.fullname}, {current_user.password}, {current_user.usertype}")
             # Guardar cambios en la base de datos
             ModelUsers.update(db, current_user)
             
-            flash("Perfil actualizado exitosamente")
-            return redirect('logout')
+            return redirect(url_for('logout'))
             
         except Exception as e:
             flash(f"Error al actualizar el perfil: {str(e)}")
@@ -156,18 +155,18 @@ def edit_perfil(id):
         return redirect(url_for('index'))
 
 
-@app.route("/admin")
 @login_required
-@admin_required
-def admin():
-    return (render_template("admin.html"))
+@app.route('/delete_user')
+def delete_user():
+    ModelUsers.delete(db, current_user)
+    return redirect(url_for('logout'))
+
 
 @login_manager_app.user_loader
 def load_user(id):
     return ModelUsers.get_by_id(db, id)
 
 @app.route('/logout')
-@login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))

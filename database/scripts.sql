@@ -189,10 +189,10 @@ END //
 DELIMITER ;
 
 
-CALL sp_AddUser('Edgar','123','Edgar','0');
+CALL sp_AddUser('Edgar@gmail.com','123','Edgar','0');
 
-CALL sp_AddUser('Sebastian','123','Sebastian','0');
+CALL sp_AddUser('Sebastian@gmail.com','123','Sebastian','0');
 
-CALL sp_AddUser('Ricardo','123','Ricardo','1');
+CALL sp_AddUser('Ricardo@gmail.com','123','Ricardo','1');
 
-CALL sp_AddUser('Miguel','123','Miguel','2');
+CALL sp_AddUser('Miguel@gmail.com','123','Miguel','2');
