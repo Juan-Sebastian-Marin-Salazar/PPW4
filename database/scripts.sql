@@ -121,6 +121,20 @@ CREATE TABLE IF NOT EXISTS cart_items (
     FOREIGN KEY (dish_id) REFERENCES dishes(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Tabla de pedidos
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id SMALLINT UNSIGNED NOT NULL,
+    cart_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    status ENUM('pending', 'processing', 'completed', 'cancelled') DEFAULT 'pending',
+    payment_method VARCHAR(50),
+    delivery_address TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (cart_id) REFERENCES carts(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 
 -- Procedimientos
