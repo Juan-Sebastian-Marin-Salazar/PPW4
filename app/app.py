@@ -89,9 +89,10 @@ def index():
     return (render_template("user/index.html"))
 
 
+@app.route("/perfil" , methods=['GET', 'POST'])
 @app.route("/perfil/<int:id>" , methods=['GET', 'POST'])
 @login_required
-def perfil(id):
+def perfil(id=None):
     if request.method == 'POST':
         try:
             # Validar campos obligatorios
