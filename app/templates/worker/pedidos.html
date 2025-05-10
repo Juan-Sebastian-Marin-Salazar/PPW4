@@ -1,0 +1,16 @@
+{% extends './base.html' %}
+{% block titulo %}Inicio{% endblock %}
+{% block cuerpo %}
+    <body>
+        <div>
+            {% for pedido in pedidos %}
+            <p> 
+                ID: {{ pedido.id }}, Ordenado por {{ pedido.owner }}, Precio {{ pedido.precio }} 
+                <form action="{{ url_for('entregar', pedido_id = pedido.id) }}" method="post" style="display: inline;">
+                    <button type="submit">Marcar como entregado</button>
+                </form>
+            </p>
+            {% endfor %}
+        </div>
+    </body>
+{% endblock %}
