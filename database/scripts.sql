@@ -102,6 +102,24 @@ INSERT INTO dishes(name, descr, price, image, category_id) VALUES('Summer Goddes
 INSERT INTO dishes(name, descr, price, image, category_id) VALUES('I\'m in Love (inlove)', 'Onigiri relleno de salmón o umeboshi (ciruela encurtida), envuelto en alga nori.', 100.00, 'img/Img_Menu/Category 6 img 6.jpg', 6);
 
 
+-- Tabla de carritos 
+CREATE TABLE IF NOT EXISTS carts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id SMALLINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    active TINYINT(1) NOT NULL DEFAULT 1, -- 1 para pagado, 0 para entregado
+    FOREIGN KEY (user_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Tabla de detalles del carrito 
+CREATE TABLE IF NOT EXISTS cart_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT NOT NULL,
+    dish_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE,
+    FOREIGN KEY (dish_id) REFERENCES dishes(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 

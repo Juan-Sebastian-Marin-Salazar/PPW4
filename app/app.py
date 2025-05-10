@@ -238,7 +238,57 @@ def delete_dish(id):
         return redirect(url_for('menu'))
 
 
+@app.route('/add_cart/<int:dish_id>', methods=['POST'])
+@login_required
+def add_cart(dish_id):
+    cantidad = int(request.form['cantidad'])
 
+    cursor = db.connection.cursor()
+
+    # Verifica si el usuario ya tiene un carrito activo (active = 1)
+    cursor.execute("""
+        SELECT id FROM carts 
+        WHERE user_id = %s AND active = 1
+    """, (current_user.id,))
+    carrito = cursor.fetchone()
+
+    # Si no tiene, crea uno
+    if not carrito:
+        cursor.execute("""
+            INSERT INTO carts (user_id, created_at, active) 
+            VALUES (%s, CURRENT_TIMESTAMP, 1)
+        """, (current_user.id,))
+        db.connection.commit()
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        carrito_id = cursor.fetchone()[0]
+    else:
+        carrito_id = carrito[0]
+
+    # Verifica si el platillo ya está en el carrito
+    cursor.execute("""
+        SELECT id FROM cart_items 
+        WHERE cart_id = %s AND dish_id = %s
+    """, (carrito_id, dish_id))
+    item_existente = cursor.fetchone()
+
+    if item_existente:
+        # Si ya existe, actualiza la cantidad
+        cursor.execute("""
+            UPDATE cart_items 
+            SET quantity = quantity + %s 
+            WHERE id = %s
+        """, (cantidad, item_existente[0]))
+    else:
+        # Si no existe, agrega nuevo item
+        cursor.execute("""
+            INSERT INTO cart_items (cart_id, dish_id, quantity)
+            VALUES (%s, %s, %s)
+        """, (carrito_id, dish_id, cantidad))
+    
+    db.connection.commit()
+    cursor.close()
+    flash("Platillo agregado al carrito")
+    return redirect(url_for('menu'))  # o la ruta del menú
 
 if __name__ == '__main__':
     
