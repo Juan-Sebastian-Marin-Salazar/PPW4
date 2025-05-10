@@ -128,8 +128,8 @@ CREATE TABLE IF NOT EXISTS orders (
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cost DECIMAL(10, 2) NOT NULL,
     delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    PRIMARY KEY (orderid),
-    FOREIGN KEY (ownerid) REFERENCES users(id)
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (owner_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -189,7 +189,10 @@ END //
 DELIMITER ;
 
 
-CALL sp_AddUser('Edgar','123','Edgar','0')
-CALL sp_AddUser('Sebastian','123','Sebastian','0')
-CALL sp_AddUser('Ricardo','123','Ricardo','1')
-CALL sp_AddUser('Miguel','123','Miguel','2')
+CALL sp_AddUser('Edgar','123','Edgar','0');
+
+CALL sp_AddUser('Sebastian','123','Sebastian','0');
+
+CALL sp_AddUser('Ricardo','123','Ricardo','1');
+
+CALL sp_AddUser('Miguel','123','Miguel','2');
