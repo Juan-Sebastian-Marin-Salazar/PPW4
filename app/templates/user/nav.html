@@ -29,8 +29,8 @@
                 {% endif %}
                 <a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
                 <a class="nav-link" href="{{ url_for('ubicaciones') }}">SUCURSALES</a>
-                <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
-                <a class="nav-link" href="contacto.html">CONTACTO</a>
+                <a class="nav-link" href="{{ url_for('nosotros')}}">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="{{ url_for('contacto')}}">CONTACTO</a>
             </div>
         </div>
         <a class="navbar-brand" href="{{ url_for('ver_carrito') }}"
@@ -61,13 +61,13 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link nav-item d-block d-lg-none" aria-current="page"
                     href="{{ url_for('index') }}">INICIO</a>
-                {% if current_user.is_authenticated and current_user.usertype == 1 %}
+                {% if current_user.is_authenticated and (current_user.usertype == 1 or current_user.usertype == 2) %}
                 <a class="nav-link" href="{{ url_for('pedidos') }}">PEDIDOS</a>
                 {% endif %}
                 <a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
                 <a class="nav-link" href="{{ url_for('ubicaciones') }}">SUCURSALES</a>
-                <a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
-                <a class="nav-link" href="contacto.html">CONTACTO</a>
+                <a class="nav-link" href="{{ url_for('nosotros')}}">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="{{ url_for('contacto')}}">CONTACTO</a>
             </div>
 
         </div>
