@@ -23,6 +23,14 @@ def admin_required(func):
         return func(*args, **kwargs)
     return decorated_view
 
+def worker_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.usertype != 1:
+            abort(403)
+        return func(*args, **kwargs)
+    return decorated_view
+
 @app.route("/")
 
 
