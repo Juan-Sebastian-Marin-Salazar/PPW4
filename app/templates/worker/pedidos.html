@@ -5,7 +5,9 @@
         <div>
             {% for order in orders %}
             <p> 
-                ID: {{ order.order_id }}, {{ order.date }}  , Ordenado por {{ order.owner_id }}, Precio {{ order.cost }} 
+                {% for key, value in order.items() %}
+                    <li>{{key}}: {{value}}</li>
+                {% endfor %}
                 <form action="{{ url_for('pedidos', pedido_id = order.order_id) }}" method="post" style="display: inline;">
                     <button type="submit">Marcar como entregado</button>
                 </form>
