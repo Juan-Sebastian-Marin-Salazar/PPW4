@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS orders (
     ownerid SMALLINT UNSIGNED NOT NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cost DECIMAL(10, 2) NOT NULL,
-    delivered BOoLEAN NOT NULL DEFAULT=FALSE,
+    delivered BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (orderid),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (ownerid) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

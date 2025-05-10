@@ -89,10 +89,9 @@ def index():
     return (render_template("user/index.html"))
 
 
-@app.route("/perfil" , methods=['GET', 'POST'])
 @app.route("/perfil/<int:id>" , methods=['GET', 'POST'])
 @login_required
-def perfil(id=None):
+def perfil(id):
     if request.method == 'POST':
         try:
             # Validar campos obligatorios
@@ -403,23 +402,41 @@ def checkout():
         """, (current_user.id,))
         carrito = cursor.fetchone()
         
-        if carrito:
-            carrito_id = carrito[0]
-            
-            # 2. Marcar el carrito como inactivo (compra finalizada)
-            cursor.execute("""
-                UPDATE carts 
-                SET active = 0 
-                WHERE id = %s
-            """, (carrito_id,))
-            
-            db.connection.commit()
-        else:
+        if not carrito:
+            flash("No tienes un carrito activo", "warning")
             return redirect(url_for('ver_carrito'))
+            
+        carrito_id = carrito[0]
+        
+        # 2. Calcular el total del carrito (CORREGIDO: usando dishes)
+        cursor.execute("""
+            SELECT SUM(d.price * ci.quantity) 
+            FROM cart_items ci
+            JOIN dishes d ON ci.dish_id = d.id
+            WHERE ci.cart_id = %s
+        """, (carrito_id,))
+        total = cursor.fetchone()[0] or 0.00
+        
+        # 3. Crear el pedido en la tabla orders
+        cursor.execute("""
+            INSERT INTO orders (ownerid, cost, delivered)
+            VALUES (%s, %s, %s)
+        """, (current_user.id, total, True))
+        db.connection.commit()
+        
+        cursor.execute("""
+            UPDATE carts 
+            SET active = 0 
+            WHERE id = %s
+        """, (carrito_id,))
+        
+        db.connection.commit()
+        flash("Pedido realizado con éxito!", "success")
     
     except Exception as e:
         db.connection.rollback()
         flash(f"Error al procesar el pedido: {str(e)}", "error")
+        return redirect(url_for('ver_carrito'))
     
     finally:
         cursor.close()
@@ -430,13 +447,6 @@ def checkout():
 @login_required
 def ubicaciones():
     return render_template('user/ubicaciones.html')
-
-@app.route("/pedidos", methods=['GET','POST'])
-@app.route("/pedidos/<int:order_id>", methods=['GET','POST'])
-@login_required
-def ordenes():
-    
-    return render_template('worker/pedidos.html', pedidos = "pedidos")
 
 if __name__ == '__main__':
     
