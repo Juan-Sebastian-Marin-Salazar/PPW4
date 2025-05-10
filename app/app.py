@@ -118,9 +118,9 @@ def perfil(id):
         flash("No tienes permiso para editar este perfil")
         return redirect(url_for('index'))
 
-@app.route("/perfil/edit/<int:id>" , methods=['GET', 'POST'])
+@app.route("/perfil/edit_perfil/<int:id>" , methods=['GET', 'POST'])
 @login_required
-def edit_user(id):
+def edit_perfil(id):
     if request.method == 'POST':
         try:
             # Validar campos obligatorios
