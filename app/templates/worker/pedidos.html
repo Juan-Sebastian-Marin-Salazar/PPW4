@@ -3,10 +3,10 @@
 {% block cuerpo %}
     <body>
         <div>
-            {% for pedido in pedidos %}
+            {% for order in orders %}
             <p> 
-                ID: {{ pedido.id }}, Ordenado por {{ pedido.owner }}, Precio {{ pedido.precio }} 
-                <form action="{{ url_for('entregar', pedido_id = pedido.id) }}" method="post" style="display: inline;">
+                ID: {{ order.order_id }}, {{ order.date }}  , Ordenado por {{ order.owner_id }}, Precio {{ order.cost }} 
+                <form action="{{ url_for('pedidos', pedido_id = order.order_id) }}" method="post" style="display: inline;">
                     <button type="submit">Marcar como entregado</button>
                 </form>
             </p>
