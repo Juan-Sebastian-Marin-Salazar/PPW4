@@ -26,7 +26,7 @@ def admin_required(func):
 def worker_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        if not current_user.is_authenticated or current_user.usertype != 1:
+        if not current_user.is_authenticated or not (current_user.usertype == 1 or current_user == 2) :
             abort(403)
         return func(*args, **kwargs)
     return decorated_view
@@ -453,6 +453,7 @@ def checkout():
 
 @app.route('/ubicaciones')
 @login_required
+@worker_required
 def ubicaciones():
     return render_template('user/ubicaciones.html')
 
@@ -472,6 +473,7 @@ def ordenes():
 
 @app.route("/pedidos/<int:order_id>", methods=['POST'])
 @login_required
+@worker_required
 def entregar_orden(order_id):
     ModelOrders.set_ordered_as_delivered(db, order_id)
     return redirect(url_for('ordenes'))
