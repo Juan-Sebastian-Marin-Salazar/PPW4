@@ -429,7 +429,7 @@ def checkout():
         cursor.execute("""
             INSERT INTO orders (ownerid, cost, delivered)
             VALUES (%s, %s, %s)
-        """, (current_user.id, total, True))
+        """, (current_user.id, total, False))
         db.connection.commit()
         
         cursor.execute("""
