@@ -187,3 +187,9 @@ BEGIN
 END IF;
 END //
 DELIMITER ;
+
+
+CALL sp_AddUser('Edgar','123','Edgar','0')
+CALL sp_AddUser('Sebastian','123','Sebastian','0')
+CALL sp_AddUser('Ricardo','123','Ricardo','1')
+CALL sp_AddUser('Miguel','123','Miguel','2')
