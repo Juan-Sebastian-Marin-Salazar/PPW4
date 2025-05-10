@@ -25,7 +25,7 @@ class ModelOrders:
     def set_ordered_as_delivered(db, order):
         cursor = db.connection.cursor()
         cursor.execute(
-            "UPDATE orders SET delivered = TRUE WHERE id = %s", (order.order_id,)
+            "UPDATE orders SET delivered = TRUE WHERE id = %s", (order)
         )
         db.connection.commit()
         cursor.close()

@@ -452,15 +452,22 @@ def ubicaciones():
 @app.route("/pedidos")
 @login_required
 def ordenes():
-    orders = ModelOrders.get_not_delivered_orders(db)
-    
-    return render_template('worker/pedidos.html', orders = "orders")
+    raw_orders = ModelOrders.get_not_delivered_orders(db)
+    orders = []
+    for raw_order in raw_orders:
+        current_order = {}
+        current_order['numero del pedido'] = raw_order[0]
+        current_order['ordenado por'] = ModelUsers.get_by_id(db, raw_order[1])
+        current_order['fecha de orden'] = raw_order[2]
+        current_order['monto total a pagar'] = raw_order[3]
+        orders.append(current_order)
+    return render_template('worker/pedidos.html', orders=orders)
 
 @app.route("/pedidos/<int:order_id>", methods=['POST'])
 @login_required
-def entregar_orden():
-    
-    return render_template('worker/pedidos.html', orders = "orders")
+def entregar_orden(order_id):
+    ModelOrders.set_ordered_as_delivered(db, order_id)
+    return redirect(url_for('ordenes'))
 
 if __name__ == '__main__':
     
