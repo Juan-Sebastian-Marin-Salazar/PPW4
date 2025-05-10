@@ -28,7 +28,7 @@ def admin_required(func):
 def worker_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        if not current_user.is_authenticated or not (current_user.usertype == 1 or current_user == 2) :
+        if not current_user.is_authenticated or not (current_user.usertype == 1 or current_user.usertype == 2) :
             abort(403)
         return func(*args, **kwargs)
     return decorated_view
