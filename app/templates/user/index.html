@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <a class="navbar-brand" href="{{ url_for('perfil') }}" style= "padding: 5px; margin-right: 10px;">
+    <a class="navbar-brand" href="{{ url_for('perfil', id=current_user.id) }}" style= "padding: 5px; margin-right: 10px;">
         <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle" style="width: 60px; height: 60px;">
         <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
     </a>

@@ -89,9 +89,9 @@ def index():
     return (render_template("user/index.html"))
 
 
-@app.route("/perfil" , methods=['GET', 'POST'])
+@app.route("/perfil/<int:id>" , methods=['GET', 'POST'])
 @login_required
-def perfil():
+def perfil(id):
     if request.method == 'POST':
         try:
             # Validar campos obligatorios
@@ -112,9 +112,23 @@ def perfil():
             
         except Exception as e:
             flash(f"Error al actualizar el perfil: {str(e)}")
+
+    user = ModelUsers.get_by_id(db, id)
+    if user is None:
+        flash("Usuario no encontrado")
+        return redirect(url_for('index'))
     
+    # Si el usuario es el mismo que está logueado, permitir editar
+    if current_user.id == id or current_user.usertype == 2:
+        # Renderizar plantilla con datos del usuario
+        return render_template("user/perfil.html", user=user, editable=True)
     
-    return (render_template("user/perfil.html"))
+    if current_user.id != user.id:
+        flash("No tienes permiso para editar este perfil")
+        return redirect(url_for('index'))
+
+    # Renderizar plantilla con datos del usuario
+    return render_template("user/perfil.html", user=user)
 
 
 @app.route("/admin")

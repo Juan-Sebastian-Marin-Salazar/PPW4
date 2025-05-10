@@ -15,51 +15,54 @@
     {% endif %}
   {% endwith %}
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
+  <section class="h-100 gradient-custom-2">
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-10">
-          <div class="card rounded-3 text-black">
-            <div class="row g-0">
-              <div class="col-lg-6">
-                <div class="card-body p-md-5 mx-md-4">
-  
-                  <div class="text-center">
-                    <img src="{{ url_for('static', filename='img/logo_empresa.png') }}" class="logo_login">
-                    <h4 class="mt-1 mb-5 pb-1">Bienvenido a la familia Umami</h4>
-                  </div>
-  
-                  <form action="/perfil" method="POST">
-                    <p>Llena estos campos para formar parte de la familia</p>
-
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <input type="text" id="form2Example11" class="form-control"
-                        placeholder="Nombre completo" name="fullname" value="{{ current_user.fullname }}"/>
-                      <label class="form-label" for="form2Example11">Nombre completo</label>
-                    </div>
-  
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <input type="text" id="form2Example11" class="form-control"
-                        placeholder="Correo electronico" name="email" value="{{ current_user.email }}" />
-                      <label class="form-label" for="form2Example11">Correo electronico</label>
-                    </div>
-  
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <input type="password" id="form2Example22" class="form-control" name="password"/>
-                      <label class="form-label" for="form2Example22">Contraseña</label>
-                    </div>
-  
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" href="{{ url_for('logout') }}">Enviar</button>
-                    </div>
-                  </form>
-  
+      <div class="row d-flex justify-content-center">
+        <div class="col col-lg-9 col-xl-8">
+          <div class="card">
+            <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                  alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                  style="width: 150px; z-index: 1">
+                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark text-body" data-mdb-ripple-color="dark" style="z-index: 1;">
+                  Edit profile
+                </button>
+                <form action="/logout" method="GET">
+                  <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark text-body" data-mdb-ripple-color="dark" style="z-index: 1;">
+                    Logout
+                  </button>
+                </form>
+                
+              </div>
+              <div class="ms-3" style="margin-top: 130px;">
+                <h5>{{ user.fullname }}</h5>
+                <p>New York</p>
+              </div>
+            </div>
+            <div class="p-4 text-black bg-body-tertiary">
+              <div class="d-flex justify-content-end text-center py-1 text-body">
+                <div>
+                  <p class="mb-1 h5">253</p>
+                  <p class="small text-muted mb-0">Photos</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-1 h5">1026</p>
+                  <p class="small text-muted mb-0">Followers</p>
+                </div>
+                <div>
+                  <p class="mb-1 h5">478</p>
+                  <p class="small text-muted mb-0">Following</p>
                 </div>
               </div>
-              <div class="col-lg-6 d-flex align-items-center gradient-custom-2" id="fondo_login">
-                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                  <h4 class="mb-4">Gracias por elegirnos!</h4>
-                  <p class="small mb-0">Te prometemos que no te defraudaremos con nuestro increible sazon.</p>
+            </div>
+            <div class="card-body p-4 text-black">
+              <div class="mb-5  text-body">
+                <p class="lead fw-normal mb-1">About</p>
+                <div class="p-4 bg-body-tertiary">
+                  <p class="font-italic mb-1">Web Developer</p>
+                  <p class="font-italic mb-1">Lives in New York</p>
+                  <p class="font-italic mb-0">Photographer</p>
                 </div>
               </div>
             </div>
