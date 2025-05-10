@@ -302,7 +302,6 @@ def add_cart(dish_id):
     
     db.connection.commit()
     cursor.close()
-    flash("Platillo agregado al carrito")
     return redirect(url_for('menu'))  # o la ruta del menú
 
 
