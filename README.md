@@ -39,7 +39,9 @@ Paso 2.- En MYSQL ejecutar el script llamado:
 scripts.sql de la carpeta 'PPW4\database\scripts.sql'
 
 Paso 3.- Despues de ejecutar ese script, ir al archivo llamado: 
-app.py en la carpeta 'PPW4\app\app.py'
+config.py en la carpeta 'PPW4\app\config.py' y cambiar el campo MYSQL_PASSWORD = "su_contrasena"
+
+paso 4.- Ejecutar el app.py que se encuentra en la direccion 'PPW4\app\app.py'
 
 ===========================================================================
 
