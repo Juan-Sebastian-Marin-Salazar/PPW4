@@ -52,9 +52,11 @@ email: Edgar@gmail.com  password: 123
 email: Sebastian@gmail.com  password: 123
 
 Para utilizarla como Trabajador/Worker
+
 email: Ricardo@gmail.com  password: 123
 
 Para utilizarla como administrador/admin
+
 email: Miguel@gmail.com  password: 123
 
 
