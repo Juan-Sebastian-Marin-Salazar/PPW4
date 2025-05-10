@@ -11,32 +11,37 @@ Marin Salazar Juan Sebastian
 
 Estrada Bustos Miguel Angel
 
-======================================================================================================
+===========================================================================
 
 Requisitos de la aplicación:
 
 Requisito 1.- Tener visual studio code
 
-Requisito 2.- Tener las extenciones necesarias (GitHub Pull Requests, Live Server) y lenguajes requeridos (Python)
+Requisito 2.- Tener las extenciones necesarias 
+(GitHub Pull Requests, Live Server) y lenguajes requeridos (Python)
 
-Requisito 3.- Tener instaladas las siguientes librerias de Python: Flask, FLask-Login, 
-FLask-MySQLdb, FLask-WTF, Jinja2, MarkupSafe, WTForms, Werkzeug, blinker, click, colorama, itsdangerous, mysqlclient, pip
+Requisito 3.- Tener instaladas las siguientes librerias de Python: Flask, 
+FLask-Login, FLask-MySQLdb, FLask-WTF, Jinja2, MarkupSafe, WTForms, 
+Werkzeug, blinker, click, colorama, itsdangerous, mysqlclient, pip
 
 Requisito 4.- Tener un navegador
 
 Requisito 5.- Tener MYSQL
 
-======================================================================================================
+===========================================================================
 
 Instrucciones de instalacion nuestro sitio web:
 
-Paso 1.- Clonar el repositorio: https://github.com/Juan-Sebastian-Marin-Salazar/PPW4.git
+Paso 1.- Clonar el repositorio: 
+https://github.com/Juan-Sebastian-Marin-Salazar/PPW4.git
 
-Paso 2.- En MYSQL ejecutar el script llamado: scripts.sql de la carpeta 'PPW4\database\scripts.sql'
+Paso 2.- En MYSQL ejecutar el script llamado: 
+scripts.sql de la carpeta 'PPW4\database\scripts.sql'
 
-Paso 3.- Despues de ejecutar ese script, ir al archivo llamado: app.py en la carpeta 'PPW4\app\app.py'
+Paso 3.- Despues de ejecutar ese script, ir al archivo llamado: 
+app.py en la carpeta 'PPW4\app\app.py'
 
-======================================================================================================
+===========================================================================
 
 Uso de nuestro sitio web:
 
