@@ -484,6 +484,11 @@ def entregar_orden(order_id):
 def nosotros():
     return render_template('user/nosotros.html')
 
+@app.route("/contacto")
+@login_required
+def contacto():
+    return render_template('user/contacto.html')
+
 
 
 if __name__ == '__main__':
