@@ -4,6 +4,7 @@ from flask_mysqldb import MySQL
 from config import DevelopmentConfig
 from models.ModelUsers import ModelUsers
 from models.entities.users import User
+from models.modelOrders import ModelOrders
 from flask_login import LoginManager, login_user, logout_user,login_required,current_user
 from functools import wraps
 
@@ -447,6 +448,19 @@ def checkout():
 @login_required
 def ubicaciones():
     return render_template('user/ubicaciones.html')
+
+@app.route("/pedidos")
+@login_required
+def ordenes():
+    orders = ModelOrders.get_not_delivered_orders(db)
+    
+    return render_template('worker/pedidos.html', orders = "orders")
+
+@app.route("/pedidos/<int:order_id>", methods=['POST'])
+@login_required
+def entregar_orden():
+    
+    return render_template('worker/pedidos.html', orders = "orders")
 
 if __name__ == '__main__':
     
