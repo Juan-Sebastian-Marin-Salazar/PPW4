@@ -427,7 +427,7 @@ def checkout():
         
         # 3. Crear el pedido en la tabla orders
         cursor.execute("""
-            INSERT INTO orders (ownerid, cost, delivered)
+            INSERT INTO orders (owner_id, cost, delivered)
             VALUES (%s, %s, %s)
         """, (current_user.id, total, False))
         db.connection.commit()
@@ -459,7 +459,7 @@ def ubicaciones():
 
 @app.route("/pedidos")
 @login_required
-def ordenes():
+def pedidos():
     raw_orders = ModelOrders.get_not_delivered_orders(db)
     orders = []
     for raw_order in raw_orders:
