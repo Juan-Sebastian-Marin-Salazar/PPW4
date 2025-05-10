@@ -123,16 +123,13 @@ CREATE TABLE IF NOT EXISTS cart_items (
 
 -- Tabla de pedidos
 CREATE TABLE IF NOT EXISTS orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id SMALLINT UNSIGNED NOT NULL,
-    cart_id INT NOT NULL,
+    orderid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    ownerid SMALLINT UNSIGNED NOT NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    total_amount DECIMAL(10, 2) NOT NULL,
-    status ENUM('pending', 'processing', 'completed', 'cancelled') DEFAULT 'pending',
-    payment_method VARCHAR(50),
-    delivery_address TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (cart_id) REFERENCES carts(id)
+    cost DECIMAL(10, 2) NOT NULL,
+    delivered BOoLEAN NOT NULL DEFAULT=FALSE,
+    PRIMARY KEY (orderid),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
