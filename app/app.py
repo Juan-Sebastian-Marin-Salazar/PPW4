@@ -478,6 +478,14 @@ def entregar_orden(order_id):
     ModelOrders.set_ordered_as_delivered(db, order_id)
     return redirect(url_for('ordenes'))
 
+
+@app.route("/nosotros")
+@login_required
+def nosotros():
+    return render_template('user/nosotros.html')
+
+
+
 if __name__ == '__main__':
     
     app.run()
