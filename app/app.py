@@ -431,10 +431,12 @@ def checkout():
 def ubicaciones():
     return render_template('user/ubicaciones.html')
 
-@app.route("/ordenes")
+@app.route("/pedidos", methods=['GET','POST'])
+@app.route("/pedidos/<int:order_id>", methods=['GET','POST'])
 @login_required
 def ordenes():
-    return render_template('worker/pedidos.html')
+    
+    return render_template('worker/pedidos.html', pedidos = "pedidos")
 
 if __name__ == '__main__':
     
