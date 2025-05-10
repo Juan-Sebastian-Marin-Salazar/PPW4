@@ -7,7 +7,6 @@ from models.entities.users import User
 from models.modelOrders import ModelOrders
 from flask_login import LoginManager, login_user, logout_user,login_required,current_user
 from functools import wraps
-# Asegúrate que esta importación sea correcta
 from models.modelOrders import ModelOrders
 
 
@@ -470,19 +469,18 @@ def checkout():
 
 @app.route('/ubicaciones')
 @login_required
-@worker_required
 def ubicaciones():
     return render_template('user/ubicaciones.html')
 
 @app.route("/pedidos", methods=['GET', 'POST'])
 @login_required
+@worker_required
 def pedidos():
     if request.method == 'POST':
         # Asegúrate de recibir el order_id del formulario
         order_id = request.form.get('order_id')
         if order_id:
             ModelOrders.set_ordered_as_delivered(db, order_id)
-            flash("Pedido marcado como entregado", "success")
             return redirect(url_for('pedidos'))
         
     raw_orders = ModelOrders.get_not_delivered_orders(db)
@@ -497,12 +495,6 @@ def pedidos():
         orders.append(current_order)
     return render_template('worker/pedidos.html', orders=orders)
 
-@app.route("/pedidos/<int:order_id>", methods=['POST'])
-@login_required
-@worker_required
-def entregar_orden(order_id):
-    ModelOrders.set_ordered_as_delivered(db, order_id)
-    return redirect(url_for('ordenes'))
 
 
 @app.route("/nosotros")
