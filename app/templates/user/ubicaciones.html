@@ -1,38 +1,6 @@
-{% extends './base.html' %}
+{% extends 'user/nav.html' %}
 {% block titulo %}Ubicaciones{% endblock %}
-{% block cuerpo %}
-<!--Esta es la barra de navegacion superior-->
-<nav class="navbar navbar-expand-lg">
-	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<a class="navbar-brand" href="index.html">
-			<img src="{{ url_for('static', filename='img/logo_empresa.png') }}">
-			<span class="d-none d-lg-block" style="color: rgb(255, 255, 255);">UMAMI</span>
-		</a>
-		<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-			<div class="navbar-nav ms-auto">
-				<a class="navbar-brand" href="{{ url_for('ver_carrito') }}"
-					style="padding: 5px; margin-right: 10px; background-color: rgb(215, 214, 214); border-radius: 40%;">
-					<img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
-				</a>
-				<a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
-				<a class="nav-link" href="menu.html">MENU</a>
-				<a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
-				<a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
-				<a class="nav-link" href="contacto.html">CONTACTO</a>
-			</div>
-		</div>
-	</div>
-	<a class="navbar-brand" href="{{ url_for('perfil') }}" style="padding: 5px; margin-right: 10px;">
-        <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle"
-            style="width: 60px; height: 60px;">
-        <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
-    </a>
-</nav>
-<!--Esta es la barra de navegacion superior-->
+{% block contenido %}
 
 <div class="sucursal">
 	<h1>Sucursal principal</h1>
