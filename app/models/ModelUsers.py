@@ -52,7 +52,6 @@ class ModelUsers():
                 "call sp_AddUser(%s,%s,%s,%s);", (user.email, user.password, user.fullname, user.usertype)
             )
             db.connection.commit()
-            print(f"Registrando: {user.email}, {user.password}, {user.fullname}, {user.usertype}")
             return True
         except Exception as ex:
             db.connection.rollback()
@@ -69,7 +68,21 @@ class ModelUsers():
                 "call sp_UpdateUser(%s,%s,%s,%s);", (user.id ,user.email, user.password, user.fullname)
             )
             db.connection.commit()
-            print(f"Actualizado: {user.email}, {user.password}, {user.fullname}")
+            return True
+        except Exception as ex:
+            db.connection.rollback()
+            print(f"Error en actualizacion: {str(ex)}")  # Para debug
+            return False
+        
+    @classmethod
+    def delete(cls, db, user):
+        try:
+            cursor = db.connection.cursor()
+        
+            cursor.execute(
+                "DELETE FROM users WHERE id = %s;", (user.id,)
+            )
+            db.connection.commit()
             return True
         except Exception as ex:
             db.connection.rollback()

@@ -10,9 +10,10 @@
     {% endif %}
 {% endwith %}
 {% if request.endpoint == 'index' %}
-    <nav class="navbar navbar-expand-lg navindex">
+<nav class="navbar navbar-expand-lg navindex">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="{{ url_for('index') }}">
@@ -21,53 +22,66 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="{{ url_for('index') }}">INICIO</a>
+                <a class="nav-link nav-item d-block d-lg-none" aria-current="page"
+                    href="{{ url_for('index') }}">INICIO</a>
+                {% if current_user.is_authenticated and (current_user.usertype == 1 or current_user.usertype == 2) %}
+                <a class="nav-link" href="{{ url_for('pedidos') }}">PEDIDOS</a>
+                {% endif %}
                 <a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
                 <a class="nav-link" href="{{ url_for('ubicaciones') }}">SUCURSALES</a>
-                <a class="nav-link" href="{{ url_for('nosotros') }}">SOBRE NOSOTROS</a>
-                <a class="nav-link" href="{{ url_for('contacto') }}">CONTACTO</a>
+                <a class="nav-link" href="{{ url_for('nosotros')}}">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="{{ url_for('contacto')}}">CONTACTO</a>
             </div>
         </div>
-        <a class="navbar-brand" href="{{ url_for('ver_carrito') }}" style="padding: 5px; margin-right: 10px; border-style: solid; background-color:rgba(0, 0, 0, 0.57); border-color: rgb(255, 255, 255); border-radius: 40%;">
-                <img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
-            </a>
-    <a class="navbar-brand" href="{{ url_for('perfil', id=current_user.id) }}" style= "padding: 5px; margin-right: 10px;">
-        <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle" style="width: 60px; height: 60px;">
-        <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
-    </a>
+        <a class="navbar-brand" href="{{ url_for('ver_carrito') }}"
+            style="padding: 5px; margin-right: 10px; border-style: solid; background-color:rgba(0, 0, 0, 0.57); border-color: rgb(255, 255, 255); border-radius: 40%;">
+            <img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
+        </a>
+        <a class="navbar-brand" href="{{ url_for('perfil', id=current_user.id) }}"
+            style="padding: 5px; margin-right: 10px;">
+            <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle"
+                style="width: 60px; height: 60px;">
+            <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
+        </a>
     </div>
-    
+
 </nav>
 {% else %}
 <nav class="navbar navbar-expand-lg">
-	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<a class="navbar-brand" href="{{ url_for('index') }}">
-			<img src="{{ url_for('static', filename='img/logo_empresa.png') }}">
-			<span class="d-none d-lg-block" style="color: rgb(255, 255, 255);">UMAMI</span>
-		</a>
-		<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-			<div class="navbar-nav ms-auto">
-				<a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="{{ url_for('index') }}">INICIO</a>
-				<a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
-				<a class="nav-link" href="{{ url_for('ubicaciones') }}">SUCURSALES</a>
-				<a class="nav-link" href="{{ url_for('nosotros') }}">SOBRE NOSOTROS</a>
-                <a class="nav-link" href="{{ url_for('contacto') }}">CONTACTO</a>
-			</div>
-            
-		</div>
-        <a class="navbar-brand" href="{{ url_for('ver_carrito') }}" style="padding: 5px; margin-right: 10px; border-style: solid; background-color:rgba(0, 0, 0, 0.57); border-color: rgb(255, 255, 255); border-radius: 40%;">
-                <img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
-            </a>
-			<a class="navbar-brand" href="{{ url_for('perfil', id=current_user.id) }}" style="padding: 5px; margin-right: 10px;">
-				<img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle"
-					style="width: 60px; height: 60px;">
-				<span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
-			</a>
-	</div>
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/logo_empresa.png') }}">
+            <span class="d-none d-lg-block" style="color: rgb(255, 255, 255);">UMAMI</span>
+        </a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link nav-item d-block d-lg-none" aria-current="page"
+                    href="{{ url_for('index') }}">INICIO</a>
+                {% if current_user.is_authenticated and (current_user.usertype == 1 or current_user.usertype == 2) %}
+                <a class="nav-link" href="{{ url_for('pedidos') }}">PEDIDOS</a>
+                {% endif %}
+                <a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
+                <a class="nav-link" href="{{ url_for('ubicaciones') }}">SUCURSALES</a>
+                <a class="nav-link" href="{{ url_for('nosotros')}}">SOBRE NOSOTROS</a>
+                <a class="nav-link" href="{{ url_for('contacto')}}">CONTACTO</a>
+            </div>
+
+        </div>
+        <a class="navbar-brand" href="{{ url_for('ver_carrito') }}"
+            style="padding: 5px; margin-right: 10px; border-style: solid; background-color:rgba(0, 0, 0, 0.57); border-color: rgb(255, 255, 255); border-radius: 40%;">
+            <img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
+        </a>
+        <a class="navbar-brand" href="{{ url_for('perfil', id=current_user.id) }}"
+            style="padding: 5px; margin-right: 10px;">
+            <img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle"
+                style="width: 60px; height: 60px;">
+            <span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
+        </a>
+    </div>
 </nav>
 {% endif %}
 
