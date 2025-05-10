@@ -128,8 +128,8 @@ CREATE TABLE IF NOT EXISTS orders (
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cost DECIMAL(10, 2) NOT NULL,
     delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    PRIMARY KEY (orderid),
-    FOREIGN KEY (ownerid) REFERENCES users(id)
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (owner_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
