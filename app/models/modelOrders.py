@@ -2,7 +2,7 @@ from .entities.order import order
 
 class ModelOrders:
     @classmethod
-    def get_all_orders(db):
+    def get_all_orders(cls,db):
         cursor = db.connection.cursor()
         cursor.execute(
             "SELECT * FROM orders"
@@ -12,7 +12,7 @@ class ModelOrders:
         return orders
 
     @classmethod
-    def get_not_delivered_orders(db):
+    def get_not_delivered_orders(cls,db):
         cursor = db.connection.cursor()
         cursor.execute(
             "SELECT * FROM orders WHERE delivered = FALSE"
@@ -22,10 +22,15 @@ class ModelOrders:
         return orders
     
     @classmethod
-    def set_ordered_as_delivered(db, order):
+    def set_ordered_as_delivered(cls, db, order_id):
         cursor = db.connection.cursor()
-        cursor.execute(
-            "UPDATE orders SET delivered = TRUE WHERE id = %s", (order)
-        )
-        db.connection.commit()
-        cursor.close()
+        try:
+            cursor.execute(
+                "UPDATE orders SET delivered = TRUE WHERE order_id = %s", (order_id,)
+            )
+            db.connection.commit()
+        except Exception as e:
+            db.connection.rollback()
+            raise e
+        finally:
+            cursor.close()

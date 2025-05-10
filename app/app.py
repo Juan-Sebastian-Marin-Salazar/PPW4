@@ -7,6 +7,8 @@ from models.entities.users import User
 from models.modelOrders import ModelOrders
 from flask_login import LoginManager, login_user, logout_user,login_required,current_user
 from functools import wraps
+# Asegúrate que esta importación sea correcta
+from models.modelOrders import ModelOrders
 
 
 
@@ -442,9 +444,9 @@ def checkout():
         
         # 3. Crear el pedido en la tabla orders
         cursor.execute("""
-            INSERT INTO orders (ownerid, cost, delivered)
+            INSERT INTO orders (owner_id, cost, delivered)
             VALUES (%s, %s, %s)
-        """, (current_user.id, total, True))
+        """, (current_user.id, total, False))
         db.connection.commit()
         
         cursor.execute("""
@@ -472,17 +474,26 @@ def checkout():
 def ubicaciones():
     return render_template('user/ubicaciones.html')
 
-@app.route("/pedidos")
+@app.route("/pedidos", methods=['GET', 'POST'])
 @login_required
-def ordenes():
+def pedidos():
+    if request.method == 'POST':
+        # Asegúrate de recibir el order_id del formulario
+        order_id = request.form.get('order_id')
+        if order_id:
+            ModelOrders.set_ordered_as_delivered(db, order_id)
+            flash("Pedido marcado como entregado", "success")
+            return redirect(url_for('pedidos'))
+        
     raw_orders = ModelOrders.get_not_delivered_orders(db)
     orders = []
     for raw_order in raw_orders:
         current_order = {}
-        current_order['numero del pedido'] = raw_order[0]
-        current_order['ordenado por'] = ModelUsers.get_by_id(db, raw_order[1])
-        current_order['fecha de orden'] = raw_order[2]
-        current_order['monto total a pagar'] = raw_order[3]
+        current_order['order_id'] = raw_order[0]  # Cambiado a nombre consistente
+        current_order['numero_de_orden'] = raw_order[0]  # Alias para la plantilla
+        current_order['ordenado_por'] = ModelUsers.get_by_id(db, raw_order[1])
+        current_order['fecha_de_orden'] = raw_order[2]
+        current_order['monto_total'] = raw_order[3]
         orders.append(current_order)
     return render_template('worker/pedidos.html', orders=orders)
 

@@ -1,18 +1,25 @@
-{% extends './base.html' %}
-{% block titulo %}Inicio{% endblock %}
+{% extends 'user/nav.html' %}
+{% block titulo %}Pedidos{% endblock %}
 {% block cuerpo %}
-    <body>
-        <div>
-            {% for order in orders %}
-            <p> 
-                {% for key, value in order.items() %}
-                    <li>{{key}} {{value}}</li>
-                {% endfor %}
-                <form action="{{ url_for('pedidos', order_id=order['numero de orden']) }}" method="post" style="display: inline;">
-                    <button type="submit">Marcar como entregado</button>
+
+<body>
+    <div class="galeria">
+        {% for order in orders %}
+        <div class="item">
+            <ul>
+                <p>Número de orden: {{ order.numero_de_orden }}</p>
+                <p>Ordenado por: {{ order.ordenado_por.fullname }}</p>
+                <p>Fecha: {{ order.fecha_de_orden }}</p>
+                <p>Total: ${{ order.monto_total }}</p>
+                <form action="{{ url_for('pedidos') }}" method="post">
+                    <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                    <button type="submit" class="btn btn-success">
+                        Marcar como entregado
+                    </button>
                 </form>
-            </p>
-            {% endfor %}
+            </ul>
         </div>
-    </body>
+        {% endfor %}
+    </div>
+</body>
 {% endblock %}
