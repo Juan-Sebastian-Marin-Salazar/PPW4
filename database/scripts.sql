@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS carts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id SMALLINT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    active TINYINT(1) NOT NULL DEFAULT 1, -- 1 para pagado, 0 para entregado
+    active TINYINT(1) NOT NULL DEFAULT 1, -- 1 para activo, 0 para inactivo
     FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

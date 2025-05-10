@@ -1,82 +1,132 @@
 {% extends './base.html' %}
 {% block titulo %}Carrito{% endblock %}
 {% block cuerpo %}
-	<nav class="navbar navbar-expand-lg">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<a class="navbar-brand" href="index.html">
-				<img src="../img/logo_empresa.png">
-				<span class="d-none d-lg-block"style="color: rgb(255, 255, 255);">UMAMI</span>
-			</a>
-			<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-				<div class="navbar-nav ms-auto">
-					<a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
-					<a class="nav-link" href="menu.html">MENU</a>
-					<a class="nav-link" href="tienda.html">PARA LLEVAR</a>
-					<a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
-					<a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
-					<a class="nav-link" href="contacto.html">CONTACTO</a>
-				</div>
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="{{ url_for('index') }}">
+			<img src="{{ url_for('static', filename='img/logo_empresa.png') }}">
+			<span class="d-none d-lg-block" style="color: rgb(255, 255, 255);">UMAMI</span>
+		</a>
+		<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+			<div class="navbar-nav ms-auto">
+				<a class="navbar-brand" href="{{ url_for('ver_carrito') }}"
+					style="padding: 5px; margin-right: 10px; background-color: rgb(215, 214, 214); border-radius: 40%;">
+					<img src="{{ url_for('static', filename='img/carrito.png') }}" style="width: 40px; height: 40px;">
+				</a>
+				<a class="nav-link nav-item d-block d-lg-none" aria-current="page" href="index.html">INICIO</a>
+				<a class="nav-link" href="{{ url_for('menu') }}">MENU</a>
+				<a class="nav-link" href="ubicaciones.html">SUCURSALES</a>
+				<a class="nav-link" href="nosotros.html">SOBRE NOSOTROS</a>
+				<a class="nav-link" href="contacto.html">CONTACTO</a>
 			</div>
+			<a class="navbar-brand" href="{{ url_for('perfil') }}" style="padding: 5px; margin-right: 10px;">
+				<img src="{{ url_for('static', filename='img/perfil.jpg') }}" class="rounded-circle"
+					style="width: 60px; height: 60px;">
+				<span class="d-none d-lg-block" style=" color: rgb(255, 255, 255);">{{ current_user.fullname }}</span>
+			</a>
 		</div>
-	</nav>
-	
-	<div class="container mt-5">
-		<div class="titulomenu"><h1>Recibo de Compra</h1></div>
+	</div>
+</nav>
+
+<div class="container mt-4">
+	<div class="titulomenu">
+		<h1>Carrito de Compras</h1>
+	</div>
+
+	{% if not items %}
+	<div class="alert alert-info">Tu carrito está vacío</div>
+	<a href="{{ url_for('menu') }}" class="btn btn-primary">Ver Menú</a>
+	{% else %}
+	<div class="table-responsive">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Imagen</th>
-					<th>Producto</th>
+					<th>Platillo</th>
+					<th>Descripción</th>
+					<th>Precio Unitario</th>
 					<th>Cantidad</th>
 					<th>Subtotal</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
-			<tbody id="resumenCompraRecibo"></tbody>
+			<tbody>
+				{% for item in items %}
+				<tr>
+					<td>{{ item[2] }}</td>
+					<td>{{ item[3] }}</td>
+					<td>${{ "%.2f"|format(item[4]) }}</td>
+					<td>
+						<form method="post" action="{{ url_for('actualizar_cantidad', item_id=item[0]) }}"
+							class="d-inline">
+							<input type="number" name="cantidad" value="{{ item[5] }}" min="1"
+								class="form-control form-control-sm" style="width: 70px;">
+							<button type="submit" class="btn btn-sm btn-outline-primary mt-1">Actualizar</button>
+						</form>
+					</td>
+					<td>${{ "%.2f"|format(item[6]) }}</td>
+					<td>
+						<a href="{{ url_for('eliminar_del_carrito', item_id=item[0]) }}"
+							class="btn btn-sm btn-outline-danger">Eliminar</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="4" class="text-right">Total:</th>
+					<th>${{ "%.2f"|format(total) }}</th>
+					<th></th>
+				</tr>
+			</tfoot>
 		</table>
-		<h4>Total: <span id="totalRecibo"></span></h4>
-		<button class="btn btn-primary" id="finalizarCompra">Finalizar Compra</button>
 	</div>
 
-	<br>
-	<br>
-	
-	<!--Pie de pagina-->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-section">
-                <h4>Umami</h4>
-                <p>Sabores auténticos en cada bocado. Ven y disfruta de la mejor experiencia gastronómica.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Calle 123, Ciudad, País</p>
-                <p><i class="fas fa-phone"></i> +123 456 7890</p>
-                <p><i class="fas fa-envelope"></i> info@umami.com</p>
-            </div>
-            <div class="footer-section">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Facebook</i></a>
-                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">X</i></a>
-                    <a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Instagram</i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Equipo: No compila</h4>
-                <div class="social-icons">
-                    <p><i class="fas fa-map-marker-alt"></i> Zavalza Covarrubias Edgar Enrique</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Telles Castro Jose Ricardo</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Marin Salazar Juan Sebastian</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Estrada Bustos Miguel Angel</p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Umami. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-	<script src="../js/scrips.js"></script>
+	<div class="text-right">
+		<a href="{{ url_for('menu') }}" class="btn btn-secondary">Seguir Comprando</a>
+		<a href="{{ url_for('checkout') }}" class="btn btn-primary">Proceder al Pago</a>
+	</div>
+	{% endif %}
+</div>
+
+
+<!--Pie de pagina-->
+<footer class="footer">
+	<div class="container">
+		<div class="footer-section">
+			<h4>Umami</h4>
+			<p>Sabores auténticos en cada bocado. Ven y disfruta de la mejor experiencia gastronómica.</p>
+		</div>
+		<div class="footer-section">
+			<h4>Contacto</h4>
+			<p><i class="fas fa-map-marker-alt"></i> Calle 123, Ciudad, País</p>
+			<p><i class="fas fa-phone"></i> +123 456 7890</p>
+			<p><i class="fas fa-envelope"></i> info@umami.com</p>
+		</div>
+		<div class="footer-section">
+			<h4>Síguenos</h4>
+			<div class="social-icons">
+				<a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Facebook</i></a>
+				<a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">X</i></a>
+				<a href="https://www.instagram.com/umami.latam/"><i class="fas fa-map-marker-alt">Instagram</i></a>
+			</div>
+		</div>
+		<div class="footer-section">
+			<h4>Equipo: No compila</h4>
+			<div class="social-icons">
+				<p><i class="fas fa-map-marker-alt"></i> Zavalza Covarrubias Edgar Enrique</p>
+				<p><i class="fas fa-map-marker-alt"></i> Telles Castro Jose Ricardo</p>
+				<p><i class="fas fa-map-marker-alt"></i> Marin Salazar Juan Sebastian</p>
+				<p><i class="fas fa-map-marker-alt"></i> Estrada Bustos Miguel Angel</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<p>&copy; 2025 Umami. Todos los derechos reservados.</p>
+	</div>
+</footer>
+<script src="../js/scrips.js"></script>
 {% endblock %}

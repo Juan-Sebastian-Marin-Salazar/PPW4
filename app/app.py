@@ -290,6 +290,132 @@ def add_cart(dish_id):
     flash("Platillo agregado al carrito")
     return redirect(url_for('menu'))  # o la ruta del menú
 
+
+
+@app.route('/ver_carrito')
+@login_required
+def ver_carrito():
+    cursor = db.connection.cursor()
+    
+    # Obtener el carrito activo del usuario
+    cursor.execute("""
+        SELECT id FROM carts 
+        WHERE user_id = %s AND active = 1
+    """, (current_user.id,))
+    carrito = cursor.fetchone()
+    
+    items_carrito = []
+    total = 0.0
+    
+    if carrito:
+        carrito_id = carrito[0]
+        # Obtener los items del carrito con detalles del platillo
+        cursor.execute("""
+            SELECT ci.id, ci.dish_id, d.name, d.descr, d.price, ci.quantity, 
+                   (d.price * ci.quantity) as subtotal
+            FROM cart_items ci
+            JOIN dishes d ON ci.dish_id = d.id
+            WHERE ci.cart_id = %s
+        """, (carrito_id,))
+        items_carrito = cursor.fetchall()
+        
+        # Calcular el total
+        cursor.execute("""
+            SELECT SUM(d.price * ci.quantity) as total
+            FROM cart_items ci
+            JOIN dishes d ON ci.dish_id = d.id
+            WHERE ci.cart_id = %s
+        """, (carrito_id,))
+        total_result = cursor.fetchone()
+        total = total_result[0] if total_result[0] else 0.0
+    
+    cursor.close()
+    return render_template('user/carrito.html', items=items_carrito, total=total)
+
+
+@app.route('/eliminar_del_carrito/<int:item_id>', methods=['POST'])
+@login_required
+def eliminar_del_carrito(item_id):
+    cursor = db.connection.cursor()
+    
+    # Verificar que el item pertenece al usuario actual
+    cursor.execute("""
+        DELETE ci FROM cart_items ci
+        JOIN carts c ON ci.cart_id = c.id
+        WHERE ci.id = %s AND c.user_id = %s
+    """, (item_id, current_user.id))
+    
+    db.connection.commit()
+    cursor.close()
+    flash("Item eliminado del carrito")
+    return redirect(url_for('ver_carrito'))
+
+@app.route('/actualizar_cantidad/<int:item_id>', methods=['POST'])
+@login_required
+def actualizar_cantidad(item_id):
+    nueva_cantidad = int(request.form['cantidad'])
+    
+    if nueva_cantidad < 1:
+        flash("La cantidad debe ser al menos 1", "error")
+        return redirect(url_for('ver_carrito'))
+    
+    cursor = db.connection.cursor()
+    
+    # Verificar que el item pertenece al usuario actual
+    cursor.execute("""
+        UPDATE cart_items ci
+        JOIN carts c ON ci.cart_id = c.id
+        SET ci.quantity = %s
+        WHERE ci.id = %s AND c.user_id = %s
+    """, (nueva_cantidad, item_id, current_user.id))
+    
+    db.connection.commit()
+    cursor.close()
+    flash("Cantidad actualizada")
+    return redirect(url_for('ver_carrito'))
+
+@app.route('/checkout')
+@login_required
+def checkout():
+    cursor = db.connection.cursor()
+    
+    try:
+        # 1. Obtener el carrito activo del usuario
+        cursor.execute("""
+            SELECT id FROM carts 
+            WHERE user_id = %s AND active = 1
+            LIMIT 1
+        """, (current_user.id,))
+        carrito = cursor.fetchone()
+        
+        if carrito:
+            carrito_id = carrito[0]
+            
+            # 2. Marcar el carrito como inactivo (compra finalizada)
+            cursor.execute("""
+                UPDATE carts 
+                SET active = 0 
+                WHERE id = %s
+            """, (carrito_id,))
+            
+            db.connection.commit()
+        else:
+            return redirect(url_for('ver_carrito'))
+    
+    except Exception as e:
+        db.connection.rollback()
+        flash(f"Error al procesar el pedido: {str(e)}", "error")
+    
+    finally:
+        cursor.close()
+    
+    return redirect(url_for('menu'))
+
+@app.route('/ubicaciones')
+@login_required
+def ubicaciones():
+    return render_template('user/ubicaciones.html')
+
 if __name__ == '__main__':
     
     app.run()
