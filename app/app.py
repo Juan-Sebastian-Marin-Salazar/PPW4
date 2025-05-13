@@ -37,18 +37,12 @@ def worker_required(func):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # Solo manejar lógica de login
     if request.method == "POST":
         user = User(0, request.form['email'], request.form['password'], None, 0)
         logged_user = ModelUsers.login(db, user)
         if logged_user is not None:
             login_user(logged_user)
-            if logged_user.usertype == 0:
-                return redirect(url_for("index"))
-            elif logged_user.usertype == 1:
-                return redirect(url_for("index"))
-            else:
-                return redirect(url_for("index"))
+            return redirect(url_for("index"))
         flash("Acceso rechazado...")
     return render_template("auth/login.html")
 
@@ -185,7 +179,7 @@ def menu():
     dishes = cursor.fetchall()
     cursor.close()
 
-    # Transformar a lista de diccionarios si lo necesitas
+    # Transformar a lista de diccionarios
     dish_list = []
     for dish in dishes:
         dish_list.append({
@@ -325,7 +319,7 @@ def add_cart(dish_id):
     
     db.connection.commit()
     cursor.close()
-    return redirect(url_for('menu'))  # o la ruta del menú
+    return redirect(url_for('menu'))
 
 
 
