@@ -4,7 +4,7 @@ class DevelopmentConfig:
     MYSQL_HOST = "shuttle.proxy.rlwy.net"
     MYSQL_USER = "root"
     MYSQL_PASSWORD = "SjWoEoUJMWOxTKWeYahbdKpybWtQmjMm"
-    MYSQL_DB = "umami"
+    MYSQL_DB = "railway"
     MYSQL_PORT = 27227
 
 
