@@ -1,9 +1,11 @@
 class DevelopmentConfig:
     DEBUG = True
     SECRET_KEY = "qhrf$edjYTJ)*21nsThdK"
-    MYSQL_HOST = "localhost"
+    MYSQL_HOST = "shuttle.proxy.rlwy.net"
     MYSQL_USER = "root"
-    MYSQL_PASSWORD = "771908"
+    MYSQL_PASSWORD = "SjWoEoUJMWOxTKWeYahbdKpybWtQmjMm"
     MYSQL_DB = "umami"
+    MYSQL_PORT = 27227
+
 
 config = {"development": DevelopmentConfig}
