@@ -12,3 +12,4 @@ colorama
 itsdangerous
 mysqlclient
 pip
+gunicorn
