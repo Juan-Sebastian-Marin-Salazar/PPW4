@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import request, redirect, url_for, render_template, flash, abort
 from flask_mysqldb import MySQL
-from config import DevelopmentConfig
-from models.ModelUsers import ModelUsers
-from models.entities.users import User
-from models.modelOrders import ModelOrders
+from app.config import DevelopmentConfig
+from app.models.ModelUsers import ModelUsers
+from app.models.entities.users import User
+from app.models.modelOrders import ModelOrders
 from flask_login import LoginManager, login_user, logout_user,login_required,current_user
 from functools import wraps
-from models.modelOrders import ModelOrders
+from app.models.modelOrders import ModelOrders
 
 
 
